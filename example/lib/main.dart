@@ -603,20 +603,28 @@ class _StorageManagerHomeScreenState extends State<StorageManagerHomeScreen>
               const PopupMenuItem(
                 value: 'preview',
                 child: Row(
+                  mainAxisSize: MainAxisSize.min,
                   children: [
-                    Icon(Icons.preview, size: 20),
-                    SizedBox(width: 10),
-                    Text('Review Dry-Run Preview'),
+                    Icon(Icons.preview, size: 18),
+                    SizedBox(width: 8),
+                    Flexible(
+                      child: Text('Dry-Run Preview',
+                          overflow: TextOverflow.ellipsis),
+                    ),
                   ],
                 ),
               ),
               const PopupMenuItem(
                 value: 'prefetch',
                 child: Row(
+                  mainAxisSize: MainAxisSize.min,
                   children: [
-                    Icon(Icons.download, size: 20),
-                    SizedBox(width: 10),
-                    Text('Prefetch Sample File'),
+                    Icon(Icons.download, size: 18),
+                    SizedBox(width: 8),
+                    Flexible(
+                      child: Text('Prefetch File',
+                          overflow: TextOverflow.ellipsis),
+                    ),
                   ],
                 ),
               ),
@@ -624,10 +632,15 @@ class _StorageManagerHomeScreenState extends State<StorageManagerHomeScreen>
               const PopupMenuItem(
                 value: 'clear_all',
                 child: Row(
+                  mainAxisSize: MainAxisSize.min,
                   children: [
-                    Icon(Icons.delete_forever, color: Colors.red, size: 20),
-                    SizedBox(width: 10),
-                    Text('Clear All Data', style: TextStyle(color: Colors.red)),
+                    Icon(Icons.delete_forever, color: Colors.red, size: 18),
+                    SizedBox(width: 8),
+                    Flexible(
+                      child: Text('Clear All Data',
+                          style: TextStyle(color: Colors.red),
+                          overflow: TextOverflow.ellipsis),
+                    ),
                   ],
                 ),
               ),
@@ -695,24 +708,11 @@ class _StorageManagerHomeScreenState extends State<StorageManagerHomeScreen>
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Expanded(
-                          child: Row(
-                            children: [
-                              const Flexible(
-                                child: Text(
-                                  'Managed Files',
-                                  style: TextStyle(
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.bold),
-                                  overflow: TextOverflow.ellipsis,
-                                ),
-                              ),
-                              const SizedBox(width: 8),
-                              Chip(
-                                label: Text('${displayItems.length}'),
-                                visualDensity: VisualDensity.compact,
-                                padding: EdgeInsets.zero,
-                              ),
-                            ],
+                          child: Text(
+                            'Managed Files (${displayItems.length})',
+                            style: const TextStyle(
+                                fontSize: 18, fontWeight: FontWeight.bold),
+                            overflow: TextOverflow.ellipsis,
                           ),
                         ),
                         if (_selectedFilePaths.isNotEmpty)
