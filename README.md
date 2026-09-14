@@ -19,7 +19,10 @@ A production-ready, security-first Flutter plugin for analyzing, categorizing, p
 - 🛡️ **Zero Unnecessary Permissions**: Operates within app-owned directories requiring zero runtime permissions on Android 10+ and iOS.
 
 ---
+##  App View
+<img width="720" height="1280" alt="screenshot-1789382269401" src="https://github.com/user-attachments/assets/e2488842-f2af-4775-9bcd-5aa4cb969f7b" />
 
+---
 ## 🔒 Security & Sandbox Guarantees
 
 > [!IMPORTANT]
