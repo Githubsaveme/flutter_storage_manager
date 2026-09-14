@@ -1,0 +1,37 @@
+name: flutter_storage_manager
+description: A production-ready Flutter plugin to manage application-owned storage, cache, temporary files, and prefetched downloads natively and securely on Android and iOS.
+version: 1.0.0
+homepage: https://github.com/Githubsaveme/flutter_storage_manager
+repository: https://github.com/Githubsaveme/flutter_storage_manager.git
+issue_tracker: https://github.com/Githubsaveme/flutter_storage_manager/issues
+
+environment:
+  sdk: ">=3.0.0 <4.0.0"
+  flutter: ">=3.3.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  path: ^1.9.0
+  plugin_platform_interface: ^2.1.4
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+topics:
+  - storage
+  - cache
+  - file-manager
+  - storage-management
+  - clean-cache
+
+flutter:
+  plugin:
+    platforms:
+      android:
+        package: com.example.flutter_storage_manager
+        pluginClass: FlutterStorageManagerPlugin
+      ios:
+        pluginClass: FlutterStorageManagerPlugin
