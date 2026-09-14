@@ -61,10 +61,10 @@ class _StorageManagerHomeScreenState extends State<StorageManagerHomeScreen>
 
   StorageInfo? _storageInfo;
   StorageAnalysis? _analysis;
-  
+
   bool _isLoading = false;
   String _loadingMessage = '';
-  
+
   StorageCategory? _selectedCategoryFilter;
   final Set<String> _selectedFilePaths = {};
 
@@ -172,7 +172,8 @@ class _StorageManagerHomeScreenState extends State<StorageManagerHomeScreen>
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(message),
-        backgroundColor: isError ? Colors.red.shade700 : const Color(0xFF10B981),
+        backgroundColor:
+            isError ? Colors.red.shade700 : const Color(0xFF10B981),
         behavior: SnackBarBehavior.floating,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       ),
@@ -195,7 +196,14 @@ class _StorageManagerHomeScreenState extends State<StorageManagerHomeScreen>
           children: [
             Icon(Icons.warning_amber_rounded, color: confirmColor, size: 28),
             const SizedBox(width: 10),
-            Expanded(child: Text(title, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold))),
+            Expanded(
+              child: Text(
+                title,
+                style:
+                    const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
           ],
         ),
         content: Text(message, style: const TextStyle(fontSize: 15)),
@@ -208,7 +216,8 @@ class _StorageManagerHomeScreenState extends State<StorageManagerHomeScreen>
             style: ElevatedButton.styleFrom(
               backgroundColor: confirmColor,
               foregroundColor: Colors.white,
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12)),
             ),
             onPressed: () => Navigator.of(ctx).pop(true),
             child: Text(confirmText),
@@ -341,11 +350,16 @@ class _StorageManagerHomeScreenState extends State<StorageManagerHomeScreen>
                 const SizedBox(height: 16),
                 const Row(
                   children: [
-                    Icon(Icons.preview_rounded, color: Color(0xFF6366F1), size: 28),
+                    Icon(Icons.preview_rounded,
+                        color: Color(0xFF6366F1), size: 28),
                     SizedBox(width: 10),
-                    Text(
-                      'Cleanup Dry-Run Preview',
-                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    Expanded(
+                      child: Text(
+                        'Cleanup Dry-Run Preview',
+                        style: TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.bold),
+                        overflow: TextOverflow.ellipsis,
+                      ),
                     ),
                   ],
                 ),
@@ -364,12 +378,19 @@ class _StorageManagerHomeScreenState extends State<StorageManagerHomeScreen>
                       return ListTile(
                         contentPadding: EdgeInsets.zero,
                         leading: CircleAvatar(
-                          backgroundColor: _getCategoryColor(item.category).withValues(alpha: 0.15),
-                          child: Icon(_getCategoryIcon(item.category), color: _getCategoryColor(item.category), size: 20),
+                          backgroundColor: _getCategoryColor(item.category)
+                              .withValues(alpha: 0.15),
+                          child: Icon(_getCategoryIcon(item.category),
+                              color: _getCategoryColor(item.category),
+                              size: 20),
                         ),
-                        title: Text(item.name, maxLines: 1, overflow: TextOverflow.ellipsis),
-                        subtitle: Text(item.category.name, style: const TextStyle(fontSize: 12)),
-                        trailing: Text(item.formattedSize, style: const TextStyle(fontWeight: FontWeight.w600)),
+                        title: Text(item.name,
+                            maxLines: 1, overflow: TextOverflow.ellipsis),
+                        subtitle: Text(item.category.name,
+                            style: const TextStyle(fontSize: 12)),
+                        trailing: Text(item.formattedSize,
+                            style:
+                                const TextStyle(fontWeight: FontWeight.w600)),
                       );
                     },
                   ),
@@ -382,10 +403,12 @@ class _StorageManagerHomeScreenState extends State<StorageManagerHomeScreen>
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.red.shade600,
                       foregroundColor: Colors.white,
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(14)),
                     ),
                     icon: const Icon(Icons.cleaning_services_rounded),
-                    label: Text('Clean All Now (${_formatBytes(preview.totalBytes)})'),
+                    label: Text(
+                        'Clean All Now (${_formatBytes(preview.totalBytes)})'),
                     onPressed: () {
                       Navigator.of(ctx).pop();
                       _confirmAndClearAll();
@@ -414,14 +437,16 @@ class _StorageManagerHomeScreenState extends State<StorageManagerHomeScreen>
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
         title: Row(
           children: [
-            Icon(_getCategoryIcon(item.category), color: _getCategoryColor(item.category)),
+            Icon(_getCategoryIcon(item.category),
+                color: _getCategoryColor(item.category)),
             const SizedBox(width: 10),
             Expanded(
               child: Text(
                 item.name,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
-                style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                style:
+                    const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
             ),
           ],
@@ -434,11 +459,14 @@ class _StorageManagerHomeScreenState extends State<StorageManagerHomeScreen>
             _detailRow('Size', item.formattedSize),
             _detailRow('Can Delete', item.canDelete ? 'Yes' : 'No'),
             if (item.createdAt != null)
-              _detailRow('Created', item.createdAt!.toLocal().toString().split('.')[0]),
+              _detailRow('Created',
+                  item.createdAt!.toLocal().toString().split('.')[0]),
             if (item.modifiedAt != null)
-              _detailRow('Modified', item.modifiedAt!.toLocal().toString().split('.')[0]),
+              _detailRow('Modified',
+                  item.modifiedAt!.toLocal().toString().split('.')[0]),
             const SizedBox(height: 12),
-            const Text('Path:', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12)),
+            const Text('Path:',
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12)),
             Container(
               padding: const EdgeInsets.all(8),
               margin: const EdgeInsets.only(top: 4),
@@ -463,7 +491,8 @@ class _StorageManagerHomeScreenState extends State<StorageManagerHomeScreen>
             style: ElevatedButton.styleFrom(
               backgroundColor: Colors.red,
               foregroundColor: Colors.white,
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10)),
             ),
             icon: const Icon(Icons.delete_outline, size: 18),
             label: const Text('Delete'),
@@ -491,8 +520,11 @@ class _StorageManagerHomeScreenState extends State<StorageManagerHomeScreen>
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(label, style: TextStyle(color: Colors.grey.shade600, fontSize: 13)),
-          Text(value, style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 13)),
+          Text(label,
+              style: TextStyle(color: Colors.grey.shade600, fontSize: 13)),
+          Text(value,
+              style:
+                  const TextStyle(fontWeight: FontWeight.w600, fontSize: 13)),
         ],
       ),
     );
@@ -510,7 +542,8 @@ class _StorageManagerHomeScreenState extends State<StorageManagerHomeScreen>
       final sampleUrl = Uri.parse(
         'https://raw.githubusercontent.com/flutter/flutter/master/README.md',
       );
-      final filename = 'sample_prefetch_${DateTime.now().millisecondsSinceEpoch}.md';
+      final filename =
+          'sample_prefetch_${DateTime.now().millisecondsSinceEpoch}.md';
 
       await _manager.prefetchFile(
         sampleUrl,
@@ -520,7 +553,8 @@ class _StorageManagerHomeScreenState extends State<StorageManagerHomeScreen>
       );
 
       if (mounted) {
-        _showSnackBar('Successfully prefetched $filename into managed storage!');
+        _showSnackBar(
+            'Successfully prefetched $filename into managed storage!');
         _loadAllData();
       }
     } catch (e) {
@@ -612,7 +646,8 @@ class _StorageManagerHomeScreenState extends State<StorageManagerHomeScreen>
                     const SizedBox(height: 20),
                     Text(
                       _loadingMessage,
-                      style: TextStyle(color: theme.colorScheme.onSurfaceVariant),
+                      style:
+                          TextStyle(color: theme.colorScheme.onSurfaceVariant),
                     ),
                   ],
                 ),
@@ -620,21 +655,31 @@ class _StorageManagerHomeScreenState extends State<StorageManagerHomeScreen>
             : RefreshIndicator(
                 onRefresh: _loadAllData,
                 child: ListView(
-                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                   children: [
                     // --- Storage Meter Overview Card ---
-                    if (_storageInfo != null) _buildStorageGaugeCard(theme, isDark),
+                    if (_storageInfo != null)
+                      _buildStorageGaugeCard(theme, isDark),
                     const SizedBox(height: 20),
 
                     // --- Cleanable Categories Grid ---
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        const Text(
-                          'Cleanable Categories',
-                          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                        const Expanded(
+                          child: Text(
+                            'Cleanable Categories',
+                            style: TextStyle(
+                                fontSize: 18, fontWeight: FontWeight.bold),
+                            overflow: TextOverflow.ellipsis,
+                          ),
                         ),
                         TextButton.icon(
+                          style: TextButton.styleFrom(
+                            padding: const EdgeInsets.symmetric(horizontal: 8),
+                            visualDensity: VisualDensity.compact,
+                          ),
                           icon: const Icon(Icons.cleaning_services, size: 16),
                           label: const Text('Dry Run Preview'),
                           onPressed: _showReviewPreviewDialog,
@@ -649,19 +694,26 @@ class _StorageManagerHomeScreenState extends State<StorageManagerHomeScreen>
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Row(
-                          children: [
-                            const Text(
-                              'Managed Files',
-                              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                            ),
-                            const SizedBox(width: 8),
-                            Chip(
-                              label: Text('${displayItems.length}'),
-                              visualDensity: VisualDensity.compact,
-                              padding: EdgeInsets.zero,
-                            ),
-                          ],
+                        Expanded(
+                          child: Row(
+                            children: [
+                              const Flexible(
+                                child: Text(
+                                  'Managed Files',
+                                  style: TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold),
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              ),
+                              const SizedBox(width: 8),
+                              Chip(
+                                label: Text('${displayItems.length}'),
+                                visualDensity: VisualDensity.compact,
+                                padding: EdgeInsets.zero,
+                              ),
+                            ],
+                          ),
                         ),
                         if (_selectedFilePaths.isNotEmpty)
                           ElevatedButton.icon(
@@ -671,7 +723,8 @@ class _StorageManagerHomeScreenState extends State<StorageManagerHomeScreen>
                               visualDensity: VisualDensity.compact,
                             ),
                             icon: const Icon(Icons.delete, size: 16),
-                            label: Text('Delete (${_selectedFilePaths.length})'),
+                            label:
+                                Text('Delete (${_selectedFilePaths.length})'),
                             onPressed: _confirmAndDeleteSelected,
                           ),
                       ],
@@ -686,7 +739,8 @@ class _StorageManagerHomeScreenState extends State<StorageManagerHomeScreen>
                     if (displayItems.isEmpty)
                       _buildEmptyState(theme)
                     else
-                      ...displayItems.map((item) => _buildFileTile(item, theme, isDark)),
+                      ...displayItems
+                          .map((item) => _buildFileTile(item, theme, isDark)),
                   ],
                 ),
               ),
@@ -730,26 +784,37 @@ class _StorageManagerHomeScreenState extends State<StorageManagerHomeScreen>
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Device Storage',
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w600,
-                      color: isDark ? Colors.indigo.shade200 : Colors.indigo.shade900,
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Device Storage',
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w600,
+                        color: isDark
+                            ? Colors.indigo.shade200
+                            : Colors.indigo.shade900,
+                      ),
                     ),
-                  ),
-                  const SizedBox(height: 4),
-                  Text(
-                    '${_formatBytes(used)} used of ${_formatBytes(total)}',
-                    style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                  ),
-                ],
+                    const SizedBox(height: 4),
+                    FittedBox(
+                      fit: BoxFit.scaleDown,
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        '${_formatBytes(used)} used of ${_formatBytes(total)}',
+                        style: const TextStyle(
+                            fontSize: 18, fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                  ],
+                ),
               ),
+              const SizedBox(width: 8),
               Container(
-                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
                 decoration: BoxDecoration(
                   color: theme.colorScheme.primary.withValues(alpha: 0.15),
                   borderRadius: BorderRadius.circular(20),
@@ -771,23 +836,29 @@ class _StorageManagerHomeScreenState extends State<StorageManagerHomeScreen>
               value: percentage,
               minHeight: 10,
               backgroundColor: isDark ? Colors.black26 : Colors.indigo.shade100,
-              valueColor: AlwaysStoppedAnimation<Color>(theme.colorScheme.primary),
+              valueColor:
+                  AlwaysStoppedAnimation<Color>(theme.colorScheme.primary),
             ),
           ),
           const SizedBox(height: 16),
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              _buildMiniStat('App Usage', _formatBytes(appUsed), Icons.apps_rounded),
-              _buildMiniStat(
-                'App Cache',
-                _formatBytes(info.appCacheBytes ?? 0),
-                Icons.cached_rounded,
+              Expanded(
+                  child: _buildMiniStat(
+                      'App Usage', _formatBytes(appUsed), Icons.apps_rounded)),
+              Expanded(
+                child: _buildMiniStat(
+                  'App Cache',
+                  _formatBytes(info.appCacheBytes ?? 0),
+                  Icons.cached_rounded,
+                ),
               ),
-              _buildMiniStat(
-                'Free Disk',
-                _formatBytes(info.freeBytes ?? 0),
-                Icons.disc_full_rounded,
+              Expanded(
+                child: _buildMiniStat(
+                  'Free Disk',
+                  _formatBytes(info.freeBytes ?? 0),
+                  Icons.disc_full_rounded,
+                ),
               ),
             ],
           ),
@@ -800,13 +871,20 @@ class _StorageManagerHomeScreenState extends State<StorageManagerHomeScreen>
     return Row(
       children: [
         Icon(icon, size: 16, color: Colors.indigo.shade400),
-        const SizedBox(width: 6),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(label, style: TextStyle(fontSize: 11, color: Colors.grey.shade600)),
-            Text(value, style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold)),
-          ],
+        const SizedBox(width: 4),
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(label,
+                  style: TextStyle(fontSize: 10, color: Colors.grey.shade600),
+                  overflow: TextOverflow.ellipsis),
+              Text(value,
+                  style: const TextStyle(
+                      fontSize: 11, fontWeight: FontWeight.bold),
+                  overflow: TextOverflow.ellipsis),
+            ],
+          ),
         ),
       ],
     );
@@ -836,18 +914,18 @@ class _StorageManagerHomeScreenState extends State<StorageManagerHomeScreen>
             borderRadius: BorderRadius.circular(16),
             onTap: () => _confirmAndClearCategory(cat.category),
             child: Padding(
-              padding: const EdgeInsets.all(10),
+              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
               child: Row(
                 children: [
                   Container(
-                    padding: const EdgeInsets.all(8),
+                    padding: const EdgeInsets.all(6),
                     decoration: BoxDecoration(
                       color: color.withValues(alpha: 0.15),
-                      borderRadius: BorderRadius.circular(12),
+                      borderRadius: BorderRadius.circular(10),
                     ),
-                    child: Icon(icon, color: color, size: 22),
+                    child: Icon(icon, color: color, size: 20),
                   ),
-                  const SizedBox(width: 10),
+                  const SizedBox(width: 8),
                   Expanded(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -855,21 +933,25 @@ class _StorageManagerHomeScreenState extends State<StorageManagerHomeScreen>
                       children: [
                         Text(
                           cat.category.name,
-                          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 13),
+                          style: const TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 12),
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                         ),
                         Text(
                           _formatBytes(cat.sizeBytes),
                           style: TextStyle(
-                            fontSize: 12,
+                            fontSize: 11,
                             color: theme.colorScheme.onSurfaceVariant,
                           ),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
                         ),
                       ],
                     ),
                   ),
-                  Icon(Icons.clear_rounded, size: 16, color: Colors.grey.shade400),
+                  Icon(Icons.clear_rounded,
+                      size: 14, color: Colors.grey.shade400),
                 ],
               ),
             ),
@@ -897,9 +979,12 @@ class _StorageManagerHomeScreenState extends State<StorageManagerHomeScreen>
               padding: const EdgeInsets.only(right: 8),
               child: FilterChip(
                 selected: isSelected,
-                avatar: Icon(_getCategoryIcon(cat), size: 16, color: isSelected ? Colors.white : _getCategoryColor(cat)),
+                avatar: Icon(_getCategoryIcon(cat),
+                    size: 16,
+                    color: isSelected ? Colors.white : _getCategoryColor(cat)),
                 label: Text(cat.name),
-                onSelected: (_) => setState(() => _selectedCategoryFilter = cat),
+                onSelected: (_) =>
+                    setState(() => _selectedCategoryFilter = cat),
               ),
             );
           }),
@@ -936,7 +1021,8 @@ class _StorageManagerHomeScreenState extends State<StorageManagerHomeScreen>
         ),
         subtitle: Text(
           '${item.category.name} • ${item.formattedSize}',
-          style: TextStyle(fontSize: 12, color: theme.colorScheme.onSurfaceVariant),
+          style: TextStyle(
+              fontSize: 12, color: theme.colorScheme.onSurfaceVariant),
         ),
         trailing: IconButton(
           icon: const Icon(Icons.delete_outline_rounded, color: Colors.grey),
@@ -970,7 +1056,8 @@ class _StorageManagerHomeScreenState extends State<StorageManagerHomeScreen>
       alignment: Alignment.center,
       child: Column(
         children: [
-          Icon(Icons.folder_off_outlined, size: 60, color: Colors.grey.shade400),
+          Icon(Icons.folder_off_outlined,
+              size: 60, color: Colors.grey.shade400),
           const SizedBox(height: 12),
           const Text(
             'No Files In Storage',
@@ -979,7 +1066,8 @@ class _StorageManagerHomeScreenState extends State<StorageManagerHomeScreen>
           const SizedBox(height: 4),
           Text(
             'Use "Prefetch Asset" to add a managed sample file.',
-            style: TextStyle(color: theme.colorScheme.onSurfaceVariant, fontSize: 13),
+            style: TextStyle(
+                color: theme.colorScheme.onSurfaceVariant, fontSize: 13),
             textAlign: TextAlign.center,
           ),
         ],
